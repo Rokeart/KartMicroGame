@@ -1,16 +1,19 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class DoorController : MonoBehaviour
+public class MetroDoorController : MonoBehaviour
 {
     [Header("Hinges")]
     public Transform leftHinge;
     public Transform rightHinge;
 
     [Header("Config")]
-    public float openAngle = 90f;       // �ngulo de apertura
-    public float speed = 2f;            // Velocidad de rotaci�n
+    public float openAngle = 90f;       // Ángulo de apertura
+    public float speed = 2f;            // Velocidad de rotación
     public float interval = 3f;         // Intervalo entre abrir/cerrar
     public float startOffset = 0f;      // Desfase inicial para desincronizar
+
+    [Header("Bounce")]
+    public float bounceForce = 5f;      // Fuerza de empuje hacia atrás
 
     private bool isOpen = false;
     private float timer;
@@ -42,7 +45,7 @@ public class DoorController : MonoBehaviour
             timer = 0f;
         }
 
-        // Transici�n suave entre cerrado y abierto
+        // Transición suave entre cerrado y abierto
         if (isOpen)
         {
             leftHinge.localRotation = Quaternion.Lerp(leftHinge.localRotation, leftOpenRot, Time.deltaTime * speed);
@@ -52,6 +55,23 @@ public class DoorController : MonoBehaviour
         {
             leftHinge.localRotation = Quaternion.Lerp(leftHinge.localRotation, leftClosedRot, Time.deltaTime * speed);
             rightHinge.localRotation = Quaternion.Lerp(rightHinge.localRotation, rightClosedRot, Time.deltaTime * speed);
+        }
+    }
+
+    // 🚀 Rebote cuando el jugador choca con la puerta
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                // Dirección opuesta a donde mira el jugador
+                Vector3 bounceDir = -collision.gameObject.transform.forward;
+
+                // Aplicar impulso hacia atrás
+                rb.AddForce(bounceDir * bounceForce, ForceMode.Impulse);
+            }
         }
     }
 }

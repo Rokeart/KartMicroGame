@@ -18,3 +18,4 @@ EditorBuildSettings:
     path: Assets/Karting/Scenes/WinScene.unity
     guid: d6801f2e59f75ee4b919cf5da4e48e3b
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
