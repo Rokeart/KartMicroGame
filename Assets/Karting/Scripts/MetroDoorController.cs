@@ -12,9 +12,7 @@ public class MetroDoorController : MonoBehaviour
     public float interval = 3f;         // Intervalo entre abrir/cerrar
     public float startOffset = 0f;      // Desfase inicial para desincronizar
 
-    [Header("Bounce")]
-    public float bounceForce = 5f;      // Fuerza de empuje hacia atrás
-
+   
     private bool isOpen = false;
     private float timer;
 
@@ -58,20 +56,5 @@ public class MetroDoorController : MonoBehaviour
         }
     }
 
-    // 🚀 Rebote cuando el jugador choca con la puerta
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                // Dirección opuesta a donde mira el jugador
-                Vector3 bounceDir = -collision.gameObject.transform.forward;
-
-                // Aplicar impulso hacia atrás
-                rb.AddForce(bounceDir * bounceForce, ForceMode.Impulse);
-            }
-        }
-    }
+   
 }

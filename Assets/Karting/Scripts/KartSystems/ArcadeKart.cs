@@ -157,7 +157,7 @@ namespace KartGame.KartSystems
         // the input sources that can control the kart
         IInput[] m_Inputs;
 
-        const float k_NullInput = 0.01f;
+        const float k_NullInput = -1;
         const float k_NullSpeed = 0.01f;
         Vector3 m_VerticalReference = Vector3.up;
 
@@ -459,7 +459,7 @@ namespace KartGame.KartSystems
 
             Quaternion turnAngle = Quaternion.AngleAxis(turningPower, transform.up);
             Vector3 fwd = turnAngle * transform.forward;
-            Vector3 movement = fwd * accelInput * finalAcceleration * ((m_HasCollision || GroundPercent > 0.0f) ? 1.0f : 0.0f);
+            Vector3 movement = fwd * (m_FinalStats.Acceleration < 1? 1 :accelInput) * finalAcceleration * ((m_HasCollision || GroundPercent > 0.0f) ? 1.0f : 0.0f);
 
             // forward movement
             bool wasOverMaxSpeed = currentSpeed >= maxSpeed;
