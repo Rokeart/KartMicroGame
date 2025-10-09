@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2302594724678368512}
   - component: {fileID: 6432518413003883497}
   - component: {fileID: 6243179850997797206}
+  - component: {fileID: 546023127872131087}
   m_Layer: 0
   m_Name: Point Light Cone
   m_TagString: Untagged
@@ -121,3 +122,19 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &546023127872131087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2730819405422119776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f7f84bcfa6cbd4c9658c395ff5cc90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLight: {fileID: 0}
+  interval: 0.2
+  startOn: 1
+  startOffset: 0
